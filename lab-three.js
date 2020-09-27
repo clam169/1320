@@ -62,14 +62,13 @@ function getDayOfTheWeek(year, month, day){
     console.log(dayOfTheWeekCode);
     console.log(dayOfTheWeekCode);
 
-function makeCalendar(){
+
     var i = 0
     while (i < 31){
-        getDayOfTheWeek(2020, 01, (nDays+i));
         console.log(nMonths[0]+"-"+(nDays+i) + "-" + year +" is a " + dayOfTheWeek[dayOfTheWeekCode]);
         i++
      }
-}
+
     
 }
 var nMonths = [01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12];
