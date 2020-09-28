@@ -1,18 +1,13 @@
-var readlineSync = require("readline-sync");
-const labThree = require("./lab-three.js");
+let readlineSync = require("readline-sync");
+let labThree = require("./lab-three.js");
 
-var yy = readlineSync.question("Please give me a year: ");
-var mm = readlineSync.question("Please give me a month: ");
-var dd = readlineSync.question("Please give me a day: ");
+console.log("Here is the calendar for 2020: ");
+labThree.makeCalendar();
 
-console.log(yy);
-console.log(mm);
-console.log(dd);
+console.log("Now, enter a date and day of the week will be returned.");
+let iyear = parseInt(readlineSync.question("Please give me a year (YYYY):\n "));
+let imonth = parseInt(readlineSync.question("Please give me a month (MM):\n "));
+let idate = parseInt(readlineSync.question("Please give me a day (DD):\n "));
 
-console.log(labThree.getDayOfTheWeek(yy, mm, dd));
-
-var weekday = labThree.getDayOfTheWeek(yy, mm, dd);
-console.log(weekday);
-
-var weekday1 = labThree.getDayOfTheWeek(2020, 9, 27)
-console.log(weekday1);
+var weekday = labThree.getDayOfTheWeek(iyear, imonth, idate);
+console.log("The date you have entered is a: " + weekday);
