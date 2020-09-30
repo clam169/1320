@@ -1,10 +1,28 @@
-var r1 = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+const readlineSync = require("readline-sync");
+const labThree = require("./lab-three.js");
 
-r1.question("Please enter a date in YYYY-MM-DD:", (answer) =>{
-    console.log("Today's date is: " + answer);
+console.log("Here is the calendar for 2020: ");
+labThree.makeCalendar();
 
-    r1.close();
-});
+console.log("Now, enter a date and day of the week will be returned.");
+
+let inputYear = readlineSync.questionInt("Please give me a year (YYYY):\n ");
+let inputMonth = readlineSync.questionInt("Please give me a month (MM):\n ");
+
+if (inputMonth < 1 || inputMonth > 12){
+    do {
+        inputMonth = readlineSync.questionInt("Please enter a valid month (MM):\n ");
+    } while (inputMonth < 1 || inputMonth > 12);
+}
+let inputDay = readlineSync.questionInt("Please give me a day (DD):\n ");
+let month_days = [1, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+if (inputDay < 1 || inputDay > month_days[inputMonth]){
+    do {
+        inputDay = readlineSync.questionInt("Please enter a valid day (DD):\n ");
+    } while (inputDay < 1 || inputDay > month_days[inputMonth]);
+}   
+
+
+let weekday = labThree.getDayOfTheWeek(inputYear, inputMonth, inputDay);
+console.log("The date you have entered is a: " + weekday);
+
