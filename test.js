@@ -1,4 +1,5 @@
 const readlineSync = require("readline-sync");
+const { isLeapYear } = require("./lab-three.js");
 const labThree = require("./lab-three.js");
 
 console.log("Here is the calendar for 2020: ");
@@ -21,7 +22,9 @@ if (inputDay < 1 || inputDay > month_days[inputMonth]){
         inputDay = readlineSync.questionInt("Please enter a valid day (DD):\n ");
     } while (inputDay < 1 || inputDay > month_days[inputMonth]);
 }   
-
+if (inputMonth == 2 && isLeapYear(inputYear) == false){
+    inputDay = readlineSync.questionInt("Please enter a valid day (DD):\n ");
+}
 
 let weekday = labThree.getDayOfTheWeek(inputYear, inputMonth, inputDay);
 console.log("The date you have entered is a: " + weekday);
