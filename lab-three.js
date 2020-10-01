@@ -1,5 +1,5 @@
 function isLeapYear(year) {
-    return (year % 4 === 0 && year % 100 !== 0 || year % 400 === 0);
+    return ((year % 4 === 0) && (year % 100 != 0)) || (year % 400 === 0);
 }
  
 function getDayOfTheWeek(year, month, day) {
@@ -33,15 +33,16 @@ function getDayOfTheWeek(year, month, day) {
     } else if (String(year).length == 4 && String(year).charAt(0) == 2 && String(year).charAt(1) == 1){
             monthCode = (monthCode + 4);
     } 
-    if (isLeapYear(year) == true && month == 1 || month == 2){
-            monthCode = (monthCode - 1);
+
+    if (isLeapYear(year) == true && (month === 1 || month === 2)){
+        monthCode = (monthCode - 1);
     }
- 
+
     //calculating the day of the week//
     let dayOfTheWeekCode = ((Math.floor(year % 100 / 12) + ((year % 100) % 12) + Math.floor((year % 100 % 12) / 4) + day + monthCode) % 7);
     let dayOfTheWeek = ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-    let dayofWeekValue = dayOfTheWeek[dayOfTheWeekCode];
-    return dayofWeekValue;
+    let dayOfWeekValue = dayOfTheWeek[dayOfTheWeekCode];
+    return dayOfWeekValue;
 }
 
 function makeCalendar() {

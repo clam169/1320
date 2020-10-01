@@ -1,18 +1,35 @@
-const readlineSync = require("readline-sync");
-const labThree = require("./lab-three.js");
+const questionInt = require("readline-sync").questionInt;
+const { makeCalendar, getDayOfTheWeek, isLeapYear } = require("./lab-three.js");
+
+function getDayOfTheWeekForUserDate(){
+    let inputYear = questionInt("Please give me a year (YYYY):\n ");
+    if (inputYear <0){
+        inputYear = questionInt("Please enter a valid year (YYYY):\n ");
+    }
+    let inputMonth = questionInt("Please give me a month (MM):\n ");
+    if (inputMonth < 1 || inputMonth > 12){
+        do {
+            inputMonth = questionInt("Please enter a valid month (MM):\n ");
+        } while (inputMonth < 1 || inputMonth > 12);
+    }
+    let inputDay = questionInt("Please give me a day (DD):\n ");
+    let month_days = [1, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    if (inputDay < 1 || inputDay > month_days[inputMonth]){
+        do {
+            inputDay = questionInt("Please enter a valid day (DD):\n ");
+        } while (inputDay < 1 || inputDay > month_days[inputMonth]);
+    }      
+    if (inputMonth == 2 && isLeapYear(inputYear) == false){
+        do {
+            inputDay = questionInt("Please enter a valid day (DD):\n ");
+        } while (inputDay < 1 || inputDay > 28);
+    }
+    weekday = getDayOfTheWeek(inputYear, inputMonth, inputDay);
+    console.log(inputYear + "-" + inputMonth + "-" + inputDay + " is a " + weekday);
+}
 
 console.log("Here is the calendar for 2020: ");
-labThree.makeCalendar();
+makeCalendar();
 
 console.log("Now, enter a date and day of the week will be returned.");
-let inputYear = readlineSync.questionInt("Please give me a year (YYYY):\n ");
-let inputMonth = readlineSync.questionInt("Please give me a month (MM):\n ");
-let inputDate = readlineSync.questionInt("Please give me a day (DD):\n ");
-
-var weekday = labThree.getDayOfTheWeek(inputYear, inputMonth, inputDate);
-
-    if (weekday == undefined){
-    console.log("Please enter a valid date.");
-        } else 
-            console.log("The date you have entered is a: " + weekday);
-
+getDayOfTheWeekForUserDate();
