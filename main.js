@@ -1,25 +1,25 @@
 const questionInt = require("readline-sync").questionInt;
 const { makeCalendar, getDayOfTheWeek, isLeapYear } = require("./lab-three.js");
 
-function getDayOfTheWeekForUserDate(){
+function getDayOfTheWeekForUserDate() {
     let inputYear = questionInt("Please give me a year (YYYY):\n ");
-    if (inputYear <0){
+    if (inputYear < 0) {
         inputYear = questionInt("Please enter a valid year (YYYY):\n ");
     }
     let inputMonth = questionInt("Please give me a month (MM):\n ");
-    if (inputMonth < 1 || inputMonth > 12){
+    if (inputMonth < 1 || inputMonth > 12) {
         do {
             inputMonth = questionInt("Please enter a valid month (MM):\n ");
         } while (inputMonth < 1 || inputMonth > 12);
     }
     let inputDay = questionInt("Please give me a day (DD):\n ");
-    let month_days = [1, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    if (inputDay < 1 || inputDay > month_days[inputMonth]){
+    let monthDays = [1, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    if (inputDay < 1 || inputDay > monthDays[inputMonth]) {
         do {
             inputDay = questionInt("Please enter a valid day (DD):\n ");
-        } while (inputDay < 1 || inputDay > month_days[inputMonth]);
+        } while (inputDay < 1 || inputDay > monthDays[inputMonth]);
     }      
-    if (inputMonth == 2 && isLeapYear(inputYear) == false){
+    if (inputMonth == 2 && isLeapYear(inputYear) == false) {
         do {
             inputDay = questionInt("Please enter a valid day (DD):\n ");
         } while (inputDay < 1 || inputDay > 28);
