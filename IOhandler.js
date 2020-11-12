@@ -21,6 +21,7 @@ const unzipper = require('unzipper'),
  * @param {string} pathOut 
  * @return {promise}
  */
+
 const unzip = (pathIn, pathOut) => {
   return new Promise((resolve, reject) => {
     fs.createReadStream(pathIn)
@@ -39,6 +40,7 @@ const unzip = (pathIn, pathOut) => {
  * @param {string} path 
  * @return {promise}
  */
+
 const readDir = dir => {
   return new Promise((resolve, reject) => {
     fs.readdir(dir, (err, files) => {
@@ -68,6 +70,11 @@ const readDir = dir => {
 
 const grayScale = ((filePath, pathProcessed) => {
   return new Promise((resolve, reject) => {
+    fs.mkdir(pathProcessed, (err) => {
+      if (err) {
+        reject (err)
+      }
+    })
     for (let i = 0; i < (filePath.length); i++) {
       fs.createReadStream(filePath[i])
       .pipe(
@@ -86,7 +93,7 @@ const grayScale = ((filePath, pathProcessed) => {
             this.data[idx + 2] = gray;
           }
         }
-      this.pack().pipe(fs.createWriteStream((path.join(pathProcessed, `in${i}.png`))));
+      this.pack().pipe(fs.createWriteStream((path.join(pathProcessed, `out${i}.png`))));
       })
       .on("error", () => reject("Error occured during grayscale"))
     }
